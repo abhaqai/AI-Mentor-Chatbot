@@ -4,10 +4,19 @@ from streamlit_chat import message
 import google.generativeai as genai
 
 
-API_KEY = "AIzaSyDYXWLijEqADfDv7X27UnWZsDOfGXlYtMg"
-genai.configure(api_key=API_KEY)
 model = genai.GenerativeModel("gemini-1.5-pro-latest")
 
+
+from dotenv import load_dotenv
+import os
+
+# Load .env file
+load_dotenv()
+
+# Get API key from environment variable
+api_key = os.getenv("API_KEY")
+
+print("API Key Loaded Successfully!")  # Test ke liye
 
 # Streamlit page configuration
 st.set_page_config(page_title="AI Mentor Chatbot")
