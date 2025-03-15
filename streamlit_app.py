@@ -2,13 +2,9 @@ from itertools import zip_longest
 import streamlit as st
 from streamlit_chat import message
 import google.generativeai as genai
-
-
-model = genai.GenerativeModel("gemini-1.5-pro-latest")
-
-
 from dotenv import load_dotenv
 import os
+
 
 # Load .env file
 load_dotenv()
@@ -16,7 +12,14 @@ load_dotenv()
 # Get API key from environment variable
 api_key = os.getenv("API_KEY")
 
-print("API Key Loaded Successfully!")  # Test ke liye
+if not api_key:
+    raise ValueError("API_KEY not found in environment variables")
+
+# Configure Google Gemini API
+genai.configure(api_key=api_key)
+
+model = genai.GenerativeModel("gemini-1.5-pro-latest")
+
 
 # Streamlit page configuration
 st.set_page_config(page_title="AI Mentor Chatbot")
