@@ -8,6 +8,7 @@ API_KEY = "AIzaSyDYXWLijEqADfDv7X27UnWZsDOfGXlYtMg"
 genai.configure(api_key=API_KEY)
 model = genai.GenerativeModel("gemini-1.5-pro-latest")
 
+
 # Streamlit page configuration
 st.set_page_config(page_title="AI Mentor Chatbot")
 st.title("👨‍🏫AI Mentor")
@@ -23,6 +24,7 @@ if "past" not in st.session_state:
 
 if "entered_prompt" not in st.session_state:
     st.session_state["entered_prompt"] = ""  # Corrected Default Value
+
 
 # Build chat history messages
 def build_message_list():
@@ -46,7 +48,7 @@ def build_message_list():
         if ai_msg is not None:
             messages.append(f"AI Mentor: {ai_msg}")
     
-    return messages  # Messages return
+    return messages
 
 
 # AI Response Function
@@ -72,19 +74,11 @@ st.text_input("You: ", key="prompt_input", on_change=submit, placeholder="Type h
 
 
 # # Generate AI Response
-# if st.session_state.entered_prompt.strip():  
-#     user_query = st.session_state.entered_prompt
-#     st.session_state.past.append(user_query) 
-#     output = generate_response()  
-#     st.session_state.generated.append(output)  
-
-
-# # Generate AI Response
 if st.session_state.entered_prompt != "":                  # Empty input check
     user_query = st.session_state.entered_prompt
     st.session_state.past.append(user_query)               # Store user query
     output = generate_response()                           # Get AI Response
-    st.session_state.generated.append()              # Store AI response
+    st.session_state.generated.append(output)              # Store AI response
 
 
 # Display Chat History
@@ -92,7 +86,6 @@ if st.session_state["generated"]:
     for i in range(len(st.session_state["generated"]) - 1, -1, -1):
         message(st.session_state["generated"][i], key=str(i))
         message(st.session_state["past"][i], is_user=True, key=str(i) + "_user")
-
 
 
 # sidebar
