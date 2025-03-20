@@ -61,3 +61,7 @@ Feel free to contribute by submitting issues or pull requests!
 
 **Author:** Abdul Haque\
 **License:** MIT
+
+## Live Demo  
+[Click here to use the AI Mentor Chatbot](https://ai-mentor-chatbot-cjtsnwppbnus86vfdftl5p.streamlit.app/)
+
